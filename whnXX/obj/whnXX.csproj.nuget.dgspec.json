@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\whn\\Documents\\WhnXiecheng\\WhnXiecheng.API\\WhnXiecheng.API\\WhnXiecheng.API.csproj": {}
+    "C:\\Users\\whn\\source\\repos\\whnXX\\whnXX.csproj": {}
   },
   "projects": {
-    "C:\\Users\\whn\\Documents\\WhnXiecheng\\WhnXiecheng.API\\WhnXiecheng.API\\WhnXiecheng.API.csproj": {
+    "C:\\Users\\whn\\source\\repos\\whnXX\\whnXX.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\whn\\Documents\\WhnXiecheng\\WhnXiecheng.API\\WhnXiecheng.API\\WhnXiecheng.API.csproj",
-        "projectName": "WhnXiecheng.API",
-        "projectPath": "C:\\Users\\whn\\Documents\\WhnXiecheng\\WhnXiecheng.API\\WhnXiecheng.API\\WhnXiecheng.API.csproj",
+        "projectUniqueName": "C:\\Users\\whn\\source\\repos\\whnXX\\whnXX.csproj",
+        "projectName": "whnXX",
+        "projectPath": "C:\\Users\\whn\\source\\repos\\whnXX\\whnXX.csproj",
         "packagesPath": "C:\\Users\\whn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\whn\\Documents\\WhnXiecheng\\WhnXiecheng.API\\WhnXiecheng.API\\obj\\",
+        "outputPath": "C:\\Users\\whn\\source\\repos\\whnXX\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\whn\\AppData\\Roaming\\NuGet\\NuGet.Config",

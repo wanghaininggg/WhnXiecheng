@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace WhnXiecheng.API
+namespace whnXX
 {
     public class Startup
     {
@@ -25,8 +25,6 @@ namespace WhnXiecheng.API
             {
                 app.UseDeveloperExceptionPage();
             }
-
-
 
             app.UseRouting();
 
