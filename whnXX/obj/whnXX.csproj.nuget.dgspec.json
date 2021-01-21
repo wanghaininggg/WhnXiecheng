@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\whn\\source\\repos\\whnXX\\whnXX.csproj": {}
+    "C:\\Users\\whn\\Desktop\\xicheng2\\whnXX\\whnXX.csproj": {}
   },
   "projects": {
-    "C:\\Users\\whn\\source\\repos\\whnXX\\whnXX.csproj": {
+    "C:\\Users\\whn\\Desktop\\xicheng2\\whnXX\\whnXX.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\whn\\source\\repos\\whnXX\\whnXX.csproj",
+        "projectUniqueName": "C:\\Users\\whn\\Desktop\\xicheng2\\whnXX\\whnXX.csproj",
         "projectName": "whnXX",
-        "projectPath": "C:\\Users\\whn\\source\\repos\\whnXX\\whnXX.csproj",
+        "projectPath": "C:\\Users\\whn\\Desktop\\xicheng2\\whnXX\\whnXX.csproj",
         "packagesPath": "C:\\Users\\whn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\whn\\source\\repos\\whnXX\\obj\\",
+        "outputPath": "C:\\Users\\whn\\Desktop\\xicheng2\\whnXX\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\whn\\AppData\\Roaming\\NuGet\\NuGet.Config",
