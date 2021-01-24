@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\whn\\Desktop\\xicheng2\\whnXX\\whnXX.csproj": {}
+    "C:\\Users\\whn\\source\\repos\\whnXiecheng\\whnXX\\whnXX.csproj": {}
   },
   "projects": {
-    "C:\\Users\\whn\\Desktop\\xicheng2\\whnXX\\whnXX.csproj": {
+    "C:\\Users\\whn\\source\\repos\\whnXiecheng\\whnXX\\whnXX.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\whn\\Desktop\\xicheng2\\whnXX\\whnXX.csproj",
+        "projectUniqueName": "C:\\Users\\whn\\source\\repos\\whnXiecheng\\whnXX\\whnXX.csproj",
         "projectName": "whnXX",
-        "projectPath": "C:\\Users\\whn\\Desktop\\xicheng2\\whnXX\\whnXX.csproj",
+        "projectPath": "C:\\Users\\whn\\source\\repos\\whnXiecheng\\whnXX\\whnXX.csproj",
         "packagesPath": "C:\\Users\\whn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\whn\\Desktop\\xicheng2\\whnXX\\obj\\",
+        "outputPath": "C:\\Users\\whn\\source\\repos\\whnXiecheng\\whnXX\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\whn\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -22,11 +22,11 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "http://nuget.lunz.cn/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -38,6 +38,23 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -56,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
