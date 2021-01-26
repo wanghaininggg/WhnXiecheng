@@ -18,7 +18,7 @@ namespace whnXX.Moldes
         [MaxLength(1500)]
         public string Description { get; set; }
         [Column(TypeName = "decimal(18,2)")]
-        public double OriginalPrice { get; set; }
+        public decimal OriginalPrice { get; set; }
         [Range(0.0, 1.0)]
         public double? DiscountPresent { get; set; }
 
@@ -42,6 +42,6 @@ namespace whnXX.Moldes
        
         public TripType? TripType { get; set; }
 
-        public Departure? departureCity { get; set; }
+        public Departure? DepartureCity { get; set; }
     }
 }

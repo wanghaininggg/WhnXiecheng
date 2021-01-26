@@ -11,7 +11,7 @@ using whnXX.Services;
 using Microsoft.EntityFrameworkCore;
 using whnXX.Database;
 using Microsoft.Extensions.Configuration;
-
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace whnXX
 {
@@ -27,13 +27,21 @@ namespace whnXX
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers(setupAction => {
+                // 不能处理格式 返回 406
+                setupAction.ReturnHttpNotAcceptable = true;
+                //setupAction.OutputFormatters.Add(
+                //    new XmlDataContractSerializerOutputFormatter()
+                //    );
+            }).AddXmlDataContractSerializerFormatters();
             // 每次创建请求发起新的，请求结束注销
             services.AddTransient<ITouristRouteRepository, TouristRouteRepository>();
             services.AddDbContext<AppDbContext>(option => {
                 //option.UseSqlServer("server=localhost; Database=; User Id=sa; Password=");
-                 option.UseSqlServer("Data Source=(localdb)\\ProjectsV13;Initial Catalog=mxdb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                //option.UseSqlServer("Data Source=(localdb)\\ProjectsV13;Initial Catalog=mxdb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
                 //option.UseSqlServer(Configuration["DbContext: ConnectionString"]);
+                //option.UseMySql(Configuration["DbContext:ConnectionString"]);
+                option.UseMySql("server = 182.92.220.59; database = FakeXieChengDb; uid = root; pwd = 123456;");
             });
 
             //services.AddSingleton 有且仅创建一个
