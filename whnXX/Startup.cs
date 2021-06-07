@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using whnXX.Database;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 
 namespace whnXX
 {
@@ -33,7 +35,28 @@ namespace whnXX
                 //setupAction.OutputFormatters.Add(
                 //    new XmlDataContractSerializerOutputFormatter()
                 //    );
-            }).AddXmlDataContractSerializerFormatters();
+            }).AddXmlDataContractSerializerFormatters()
+            .ConfigureApiBehaviorOptions(setupAction =>
+            {
+                setupAction.InvalidModelStateResponseFactory = context =>
+                {
+                    var problemDetail = new ValidationProblemDetails(context.ModelState)
+                    {
+                        Type = "ll",
+                        Title = "数据验证失败",
+                        Status = StatusCodes.Status422UnprocessableEntity,
+                        Detail = "请看详细信息",
+                        Instance = context.HttpContext.Request.Path
+
+                    };
+                    problemDetail.Extensions.Add("traceId", context.HttpContext.TraceIdentifier);
+                    return new UnprocessableEntityObjectResult(problemDetail)
+                    {
+                        ContentTypes = { "application/problem+json"}
+                        };
+                };
+            }
+            );
             // 每次创建请求发起新的，请求结束注销
             services.AddTransient<ITouristRouteRepository, TouristRouteRepository>();
             services.AddDbContext<AppDbContext>(option => {
@@ -43,6 +66,9 @@ namespace whnXX
                 //option.UseMySql(Configuration["DbContext:ConnectionString"]);
                 option.UseMySql("server = 182.92.220.59; database = FakeXieChengDb; uid = root; pwd = 123456;");
             });
+
+            // 扫描profile文件
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             //services.AddSingleton 有且仅创建一个
             //services.AddScoped 事物 有且仅创建一个

@@ -35,6 +35,7 @@ namespace whnXX.Moldes
         public string Notes { get; set; }
 
         public ICollection<TouristRoutePicture> TouristRoutePictures { get; set; }
+
         = new List<TouristRoutePicture>();
 
         public double? Rating { get; set; }

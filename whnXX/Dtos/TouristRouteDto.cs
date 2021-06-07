@@ -34,5 +34,7 @@ namespace whnXX.Dtos
         public string TripType { get; set; }
 
         public string DepartureCity { get; set; }
+
+        public ICollection<TouristRoutePictureDto> TouristRoutePictures { get; set; }
     }
 }
