@@ -22,10 +22,8 @@ namespace whnXX.Controllers
             IMapper mapper
             )
         {
-            _touristRouteRepository = touristRouteRepository ??
-                throw new ArgumentNullException(nameof(touristRouteRepository));
-            _mapper = mapper ??
-                throw new ArgumentNullException(nameof(mapper));
+            _touristRouteRepository = touristRouteRepository ?? throw new ArgumentNullException(nameof(touristRouteRepository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet]
@@ -35,8 +33,10 @@ namespace whnXX.Controllers
             {
                 return NotFound("旅游路线不存在");
             }
+
             var picturesFromRepo = _touristRouteRepository.GetPicturesByTouristRouteId(touristRouteId);
 
+            // 数组null 或者 长度等于 0
             if (picturesFromRepo == null || picturesFromRepo.Count() <= 0)
             {
                 return NotFound("照片不存在");
@@ -54,6 +54,7 @@ namespace whnXX.Controllers
             }
 
             var pircturFromRepo = _touristRouteRepository.GetPicture(pictureId);
+
             if (pircturFromRepo == null)
             {
                 return NotFound("照片不存在");
@@ -76,6 +77,7 @@ namespace whnXX.Controllers
             var pictureModel = _mapper.Map<TouristRoutePicture>(touristRoutePictureForCreation);
 
             _touristRouteRepository.AddTouristPictureRoutePicture(touristRouteId, pictureModel);
+
             _touristRouteRepository.Save();
 
             var pictureToReturn = _mapper.Map<TouristRoutePictureDto>(pictureModel);

@@ -15,9 +15,7 @@ namespace whnXX.ValidationAttributes
 
             if (touristRouteDto.Title == touristRouteDto.Description)
             {
-                return new ValidationResult("路线名称必须与路线描述不一样",
-                    new[] { "TouristRouteForCreationDto" }
-                    );
+                return new ValidationResult("路线名称必须与路线描述不一样", new[] { "TouristRouteForCreationDto" });
             }
             return ValidationResult.Success;
 

@@ -9,9 +9,7 @@ namespace whnXX.ResourceParameters
     public class TouristRouteResourceParamaters
     {
         public string Keyword { get; set; }
-
         
-
         public string RatingOperator { get; set; }
 
         public int? RatingValue { get; set; }

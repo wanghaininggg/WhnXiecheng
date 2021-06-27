@@ -29,9 +29,11 @@ namespace whnXX.Dtos
         public DateTime? UpdateTime { get; set; }
 
         public DateTime? DepartureTime { get; set; }
+
         public string Features { get; set; }
 
         public string Fees { get; set; }
+
         public string Notes { get; set; }
 
         public double? Rating { get; set; }
@@ -42,7 +44,7 @@ namespace whnXX.Dtos
         public string DepartureCity { get; set; }
         public ICollection<TouristRoutePictureForCreationDto> TouristRoutePictures { get; set; }
 
-    = new List<TouristRoutePictureForCreationDto>();
+                = new List<TouristRoutePictureForCreationDto>();
 
         //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         //{

@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using whnXX.Database;
 using whnXX.Moldes;
 
@@ -25,6 +24,7 @@ namespace whnXX.Services
             }
             _context.TouristRoutes.Add(touristRoute);
         }
+
         public bool Save()
         {
             return (_context.SaveChanges() >= 0);
@@ -48,6 +48,7 @@ namespace whnXX.Services
         public IEnumerable<TouristRoute> GetTouristRoutes(string keyword, string ratingOperator, int? ratingValue)
         {
             IQueryable<TouristRoute> result = _context.TouristRoutes.Include(t => t.TouristRoutePictures);
+
             if (!string.IsNullOrWhiteSpace(keyword))
             {
                 keyword = keyword.Trim();
