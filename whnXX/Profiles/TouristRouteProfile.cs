@@ -33,8 +33,11 @@ namespace whnXX.Profiles
                 dest => dest.Id,
                 opt => opt.MapFrom(src => Guid.NewGuid())
                 );
-            
-                
+
+            // 前映射未后
+            CreateMap<TouristRouteForUpdateDto, TouristRoute>();
+
+            CreateMap<TouristRoute, TouristRouteForUpdateDto>();
         }
     }
 }

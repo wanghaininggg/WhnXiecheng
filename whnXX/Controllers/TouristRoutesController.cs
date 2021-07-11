@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using whnXX.Dtos;
+using whnXX.Helper;
 using whnXX.Moldes;
 using whnXX.ResourceParameters;
 using whnXX.Services;
@@ -92,5 +95,86 @@ namespace whnXX.Controllers
                 );
         }
 
+        [HttpPut("{touristRouteId}")]
+        public IActionResult UpdateTouristRoute([FromRoute]Guid touristRouteId,[FromBody] TouristRouteForUpdateDto touristRouteForUpdateDto)
+        {
+            if (!_touristRouteRepository.TouristRouteExists(touristRouteId))
+            {
+                return NotFound("旅游路线找不到");
+            }
+
+            var touristRouteFromRepo = _touristRouteRepository.GetTouristRoute(touristRouteId);
+
+            // 1. 映射DTO
+            // 2. 更新DTO的数据
+            // 3. 保存
+
+            _mapper.Map(touristRouteForUpdateDto, touristRouteFromRepo);
+            _touristRouteRepository.Save();
+            return NoContent();
+        }
+
+        [HttpPatch("{touristRouteId}")]
+        public IActionResult PartiallyUpdateTouristRoute([FromRoute]Guid touristRouteId,
+            [FromBody] JsonPatchDocument<TouristRouteForUpdateDto> patchDocument)
+        {
+            if (!_touristRouteRepository.TouristRouteExists(touristRouteId))
+            {
+                return NotFound("旅游路线找不到");
+            }
+
+            // 数据模型
+            var touristRouteFromRepo = _touristRouteRepository.GetTouristRoute(touristRouteId);
+
+            var touristRouteToPatch = _mapper.Map<TouristRouteForUpdateDto>(touristRouteFromRepo);
+
+
+            patchDocument.ApplyTo(touristRouteToPatch, ModelState);
+
+            // 数据验证
+            if (!TryValidateModel(touristRouteToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            _mapper.Map(touristRouteToPatch, touristRouteFromRepo);
+            _touristRouteRepository.Save();
+
+            return NoContent();
+        }
+
+        [HttpDelete("{touristRouteId}")]
+        public IActionResult DeleteTouristRoute([FromRoute] Guid touristRouteId)
+        {
+            if (!_touristRouteRepository.TouristRouteExists(touristRouteId))
+            {
+                return NotFound("旅游路线找不到");
+            }
+
+            var touristRouteFromRepo = _touristRouteRepository.GetTouristRoute(touristRouteId);
+
+            _touristRouteRepository.DeleteTouristRoute(touristRouteFromRepo);
+
+            _touristRouteRepository.Save();
+
+            return NoContent();
+        }
+
+        [HttpDelete("({touristIDs})")]
+        public IActionResult DeleteByIDs([ModelBinder(BinderType = typeof(ArrayModelBinder))][FromRoute]IEnumerable<Guid> touristIDs)
+        {
+            if (touristIDs == null)
+            {
+                return BadRequest();
+            }
+
+            var touristRoutesFromrepo = _touristRouteRepository.GetTouristRoutesByIDList(touristIDs);
+
+            _touristRouteRepository.DeleteTouristRoutes(touristRoutesFromrepo);
+
+            _touristRouteRepository.Save();
+            return NoContent();
+
+        }
     }
 }

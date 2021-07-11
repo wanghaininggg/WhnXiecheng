@@ -20,5 +20,12 @@ namespace whnXX.Services
 
         void AddTouristPictureRoutePicture(Guid touristRouteId, TouristRoutePicture touristRoutePicture);
         bool Save();
+
+        void DeleteTouristRoute(TouristRoute touristRoute);
+
+        void DeletePictureRoute(TouristRoutePicture touristRoutePicture);
+
+        IEnumerable<TouristRoute> GetTouristRoutesByIDList(IEnumerable<Guid> ids);
+        void DeleteTouristRoutes (IEnumerable<TouristRoute> touristRoutes);
     }
 }

@@ -92,5 +92,22 @@ namespace whnXX.Controllers
                 );
         }
 
+        [HttpDelete("{pictureId}")]
+        public IActionResult DeletePicture([FromRoute] Guid touristRouteId, [FromRoute] int pictureId )
+        {
+            if (!_touristRouteRepository.TouristRouteExists(touristRouteId))
+            {
+                return NotFound("旅游路线不存在");
+            }
+
+            var pircturFromRepo = _touristRouteRepository.GetPicture(pictureId);
+
+            _touristRouteRepository.DeletePictureRoute(pircturFromRepo);
+
+            _touristRouteRepository.Save();
+
+            return NoContent();
+        }
+
     }
 }

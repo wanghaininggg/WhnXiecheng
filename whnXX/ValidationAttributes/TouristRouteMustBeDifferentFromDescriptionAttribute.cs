@@ -11,14 +11,13 @@ namespace whnXX.ValidationAttributes
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var touristRouteDto = (TouristRouteForCreationDto)validationContext.ObjectInstance;
+            var touristRouteDto = (TouristRouteForMaipulationDto)validationContext.ObjectInstance;
 
             if (touristRouteDto.Title == touristRouteDto.Description)
             {
                 return new ValidationResult("路线名称必须与路线描述不一样", new[] { "TouristRouteForCreationDto" });
             }
             return ValidationResult.Success;
-
         }
     }
 }

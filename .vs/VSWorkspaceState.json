@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\whnXX"
+    "\\whnXX",
+    "\\whnXX\\Controllers",
+    "\\whnXX\\ValidationAttributes"
   ],
   "SelectedNode": "\\whnXX\\whnXX.sln",
   "PreviewInSolutionExplorer": false

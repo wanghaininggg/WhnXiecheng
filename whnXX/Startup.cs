@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Serialization;
 
 namespace whnXX
 {
@@ -35,7 +36,12 @@ namespace whnXX
                 //setupAction.OutputFormatters.Add(
                 //    new XmlDataContractSerializerOutputFormatter()
                 //    );
-            }).AddXmlDataContractSerializerFormatters()
+            })
+                .AddNewtonsoftJson(setupAction => {
+                    setupAction.SerializerSettings.ContractResolver = new
+                     CamelCasePropertyNamesContractResolver();
+                })
+                .AddXmlDataContractSerializerFormatters()
             .ConfigureApiBehaviorOptions(setupAction =>
             {
                 setupAction.InvalidModelStateResponseFactory = context =>
@@ -53,18 +59,20 @@ namespace whnXX
                     return new UnprocessableEntityObjectResult(problemDetail)
                     {
                         ContentTypes = { "application/problem+json"}
-                        };
+                    };
                 };
             }
             );
             // 每次创建请求发起新的，请求结束注销
             services.AddTransient<ITouristRouteRepository, TouristRouteRepository>();
+
+            
             services.AddDbContext<AppDbContext>(option => {
                 //option.UseSqlServer("server=localhost; Database=; User Id=sa; Password=");
                 //option.UseSqlServer("Data Source=(localdb)\\ProjectsV13;Initial Catalog=mxdb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
                 //option.UseSqlServer(Configuration["DbContext: ConnectionString"]);
                 //option.UseMySql(Configuration["DbContext:ConnectionString"]);
-                option.UseMySql("server = 182.92.220.59; database = FakeXieChengDb; uid = root; pwd = 123456;");
+                option.UseMySql("server = 118.190.25.232; database = FakeXieChengDb; uid = root; pwd = root;");
             });
 
             // 扫描profile文件
